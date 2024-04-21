@@ -20722,6 +20722,14 @@ product_name = "YUDUM ZEYTINYAGI 500 ML NATUREL SIZMA"
 barcode_id = "8690876100304"
 product_name = "YUDUM ZEYTINYAGI 500 ML RIVIERA"
 
+[[meyve_sebze]]
+barcode_id = "8698943280041"
+product_name = "KIRMIZI SOGAN"
+
+[[meyve_sebze]]
+barcode_id = "8698555405290"
+product_name = "KIVI"
+
 [[maden_suyu]]
 barcode_id = "8693855001609"
 product_name = "FRESA FRESHER MADEN SUYU 250ML.MANDALIN"
