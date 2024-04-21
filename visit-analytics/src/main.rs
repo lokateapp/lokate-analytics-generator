@@ -1,8 +1,10 @@
-use lokate_visit_analytics::run;
+use lokate_visit_analytics::{get_configuration, run};
 use std::net::TcpListener;
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
-    let listener = TcpListener::bind("127.0.0.1:4444").expect("Failed to bind");
+    let configuration = get_configuration().expect("Failed to read configuration");
+    let address = format!("127.0.0.1:{}", configuration.server_port);
+    let listener = TcpListener::bind(address).expect("Failed to bind");
     run(listener)?.await
 }

@@ -30,8 +30,18 @@ name = "lokate_visit_analytics_server"
 
 [dependencies]
 actix-web = "4.5.1"
+chrono = "0.4.38"
+config = "0.11.0"
 linfa-clustering = "0.7.0"
 reqwest = "0.12.4"
 serde = { version = "1.0.198", features = ["derive"] }
-sqlx = "0.7.4"
+sqlx = { version = "0.7.4", features = [
+    "runtime-tokio",
+    "tls-rustls",
+    "macros",
+    "postgres",
+    "uuid",
+    "chrono",
+    "migrate",
+] }
 tokio = { version = "1.37.0", features = ["macros", "rt-multi-thread"] }
