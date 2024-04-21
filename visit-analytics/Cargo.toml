@@ -17,7 +17,9 @@ name = "lokate_visit_analytics_server"
 actix-web = "4.5.1"
 chrono = "0.4.38"
 config = "0.11.0"
+env_logger = "0.11.3"
 linfa-clustering = "0.7.0"
+log = "0.4.21"
 reqwest = "0.12.4"
 serde = { version = "1.0.198", features = ["derive"] }
 sqlx = { version = "0.7.4", features = [
