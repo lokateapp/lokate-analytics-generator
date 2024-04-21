@@ -5,4 +5,32 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[target.x86_64-pc-windows-msvc]
+rustflags = ["-C", "link-arg=-fuse-ld=lld"]
+
+[target.x86_64-pc-windows-gnu]
+rustflags = ["-C", "link-arg=-fuse-ld=lld"]
+
+[target.x86_64-unknown-linux-gnu]
+rustflags = ["-C", "linker=clang", "-C", "link-arg=-fuse-ld=lld"]
+
+[target.x86_64-apple-darwin]
+rustflags = ["-C", "link-arg=-fuse-ld=/usr/local/bin/zld"]
+
+[target.aarch64-apple-darwin]
+rustflags = ["-C", "link-arg=-fuse-ld=/usr/local/bin/zld"]
+
+[lib]
+path = "src/lib.rs"
+name = "lokate_visit_analytics"
+
+[[bin]]
+path = "src/main.rs"
+name = "lokate_visit_analytics_server"
+
 [dependencies]
+actix-web = "4.5.1"
+reqwest = "0.12.4"
+serde = { version = "1.0.198", features = ["derive"] }
+sqlx = "0.7.4"
+tokio = { version = "1.37.0", features = ["macros", "rt-multi-thread"] }
