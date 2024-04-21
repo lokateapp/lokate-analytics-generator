@@ -2,3 +2,4 @@
 .envrc
 api/venv
 api/__pycache__
+visit-analytics/target/
