@@ -26,6 +26,6 @@ def run(excel_file, row_ranges_file, output_file):
         toml.dump(data, f)
 
 excel_file = "barkod.xlsx"
-row_ranges_file = "products2.toml"
+row_ranges_file = "products.toml"
 output_file = "campaign_products_map.toml"
 run(excel_file, row_ranges_file, output_file)
