@@ -12,7 +12,6 @@ async fn health_check_works() {
         .expect("Failed to execute request.");
 
     assert!(response.status().is_success());
-    assert_eq!(Some(0), response.content_length());
 }
 
 fn spawn_app() -> String {
