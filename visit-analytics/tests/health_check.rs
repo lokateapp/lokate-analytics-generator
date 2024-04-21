@@ -1,7 +1,10 @@
-use std::net::TcpListener;
+mod spawn_app;
+use spawn_app::spawn_app;
+use sqlx::{PgConnection, Connection};
+use lokate_visit_analytics::get_configuration;
 
 #[tokio::test]
-async fn health_check_works() {
+async fn app_health_check() {
     let address = spawn_app();
 
     let client = reqwest::Client::new();
@@ -18,11 +21,11 @@ async fn health_check_works() {
     assert_eq!(response_text, "It works!");
 }
 
-fn spawn_app() -> String {
-    let listener = TcpListener::bind("127.0.0.1:0").expect("Failed to bind random port");
-    // Retrieve the port assigned to app by the OS
-    let port = listener.local_addr().unwrap().port();
-    let server = lokate_visit_analytics::run(listener).expect("Failed to bind address");
-    let _ = tokio::spawn(server);
-    format!("http://127.0.0.1:{}", port)
+#[tokio::test]
+async fn db_health_check() {
+    let configuration = get_configuration().expect("Failed to read configuration");
+    let connection_string = configuration.database.connection_string();
+    let _connection = PgConnection::connect(&connection_string)
+        .await
+        .expect("Failed to connect postgres");
 }
