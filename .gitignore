@@ -1,0 +1,4 @@
+.direnv
+.envrc
+api/venv
+api/__pycache__
