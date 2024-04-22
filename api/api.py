@@ -4,11 +4,16 @@ from sqlalchemy import create_engine
 from datetime import datetime
 import traceback
 import pickle
+import os
 
 app = Flask(__name__)
 
 # Create a connection to the PostgreSQL database
-engine = create_engine('postgresql://postgres:password@localhost:5432/lokate_dev')
+connection_string = 'postgresql://postgres:password@localhost:5432/lokate_dev'
+if os.environ.get('DB_CONNECTION_STRING') != None:
+    connection_string = os.environ["DB_CONNECTION_STRING"]  
+
+engine = create_engine(connection_string)
 
 category_keys = [
     'seker_sakiz', 'cikolata_biskuvi', 'cips', 'gevrek', 'bebek',
