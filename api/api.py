@@ -110,7 +110,10 @@ def get_user_event_today(user_id):
         for i, prob in enumerate(probabilities):
             print(f"Probability for class {i}: {prob[0][1]}")
             # Append the probability to the list
-            probabilities_list.append(prob[0][1])
+            probabilities_list.append({
+                "category": category_keys[i],
+                "probability": prob[0][1]
+            })
 
         # Convert the list to a JSON array and return
         return jsonify(probabilities_list)
