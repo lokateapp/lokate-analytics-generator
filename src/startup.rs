@@ -7,6 +7,7 @@ use std::net::TcpListener;
 
 pub fn run(listener: TcpListener, connection_pool: PgPool) -> Result<Server, std::io::Error> {
     let db_pool = web::Data::new(connection_pool);
+    println!("Creating server");
     let server = HttpServer::new(move || {
         App::new()
             .wrap(Logger::default())
@@ -23,5 +24,6 @@ pub fn run(listener: TcpListener, connection_pool: PgPool) -> Result<Server, std
     })
     .listen(listener)?
     .run();
+    println!("Server is created");
     Ok(server)
 }
