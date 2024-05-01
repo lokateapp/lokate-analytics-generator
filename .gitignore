@@ -5,5 +5,5 @@
 python/venv
 python/__pycache__
 target/
-clusters_output.txt
+notebooks/visit-analytics/clusters_output.txt
 misc/barkod.xlsx
