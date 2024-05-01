@@ -2,6 +2,6 @@
 .envrc
 api/venv
 api/__pycache__
-visit-analytics/target/
+target/
+clusters_output.txt
 misc/barkod.xlsx
-visit-analytics/clusters_output.txt
