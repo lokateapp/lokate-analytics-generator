@@ -17,9 +17,11 @@ name = "lokate_analytics_server"
 actix-web = "4.5.1"
 chrono = "0.4.38"
 config = "0.11.0"
+derive_more = "0.99.17"
 env_logger = "0.11.3"
 linfa-clustering = "0.7.0"
 log = "0.4.21"
+pyo3 = { version = "0.21.2", features = ["auto-initialize"] }
 reqwest = "0.12.4"
 serde = { version = "1.0.198", features = ["derive"] }
 sqlx = { version = "0.7.4", features = [

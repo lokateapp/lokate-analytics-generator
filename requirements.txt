@@ -6,3 +6,4 @@ pandas
 psycopg2
 toml
 openpyxl
+python-dotenv
