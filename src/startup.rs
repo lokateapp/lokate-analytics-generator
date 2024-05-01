@@ -1,4 +1,4 @@
-use crate::routes::{generate_visit_analytics, generate_visit_sequences, health_check};
+use crate::routes::{generate_purchase_analytics, generate_visit_analytics, health_check};
 use actix_web::dev::Server;
 use actix_web::middleware::Logger;
 use actix_web::{web, App, HttpServer};
