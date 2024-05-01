@@ -1,7 +1,9 @@
 .direnv
 .envrc
-api/venv
-api/__pycache__
+.venv
+.env
+python/venv
+python/__pycache__
 target/
 clusters_output.txt
 misc/barkod.xlsx
