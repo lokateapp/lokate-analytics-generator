@@ -3,15 +3,16 @@ use derive_more::{Display, Error};
 use actix_web::{web, Error, Responder, ResponseError};
 use pyo3::prelude::*;
 
-pub async fn generate_purchase_analytics() -> Result<impl Responder, Error> {
+pub async fn generate_purchase_analytics(path: web::Path<String>) -> Result<impl Responder, Error> {
     log::info!("generate purchase analytics endpoint is called");
+    let user_id: String = path.into_inner();
     let code = include_str!("../../python/generate_purchase_analytics.py");
 
     match Python::with_gil(|py| -> Result<_, PyErr> {
         let activators = PyModule::from_code_bound(py, code, "", "")?;
         let categories_to_probabilities: Vec<(String, f64)> = activators
             .getattr("get_user_event_today")?
-            .call1(("cd96f860-8a1e-4ff0-9a9d-10a7c6942f4f",))?
+            .call1((user_id, ))?
             .extract()?;
 
         Ok(categories_to_probabilities)
