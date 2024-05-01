@@ -1,4 +1,4 @@
-use lokate_visit_analytics::{get_configuration, run};
+use lokate_analytics::{get_configuration, run};
 use sqlx::PgPool;
 use std::net::TcpListener;
 

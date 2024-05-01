@@ -1,5 +1,5 @@
 [package]
-name = "visit-analytics"
+name = "lokate-analytics-generator"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,11 +7,11 @@ edition = "2021"
 
 [lib]
 path = "src/lib.rs"
-name = "lokate_visit_analytics"
+name = "lokate_analytics"
 
 [[bin]]
 path = "src/main.rs"
-name = "lokate_visit_analytics_server"
+name = "lokate_analytics_server"
 
 [dependencies]
 actix-web = "4.5.1"
