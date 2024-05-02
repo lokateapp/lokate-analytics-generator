@@ -12,11 +12,11 @@ pub fn run(listener: TcpListener, connection_pool: PgPool) -> Result<Server, std
             .wrap(Logger::default())
             .route("/health_check", web::get().to(health_check))
             .route(
-                "/generate_purchase_analytics/{user_id}",
+                "/purchase-analytics/{user_id}",
                 web::get().to(generate_purchase_analytics),
             )
             .route(
-                "/generate_visit_analytics",
+                "/visit-analytics",
                 web::get().to(generate_visit_analytics),
             )
             .app_data(db_pool.clone())
