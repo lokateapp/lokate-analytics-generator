@@ -15,10 +15,7 @@ pub fn run(listener: TcpListener, connection_pool: PgPool) -> Result<Server, std
                 "/purchase-analytics/{user_id}",
                 web::get().to(generate_purchase_analytics),
             )
-            .route(
-                "/visit-analytics",
-                web::get().to(generate_visit_analytics),
-            )
+            .route("/visit-analytics", web::get().to(generate_visit_analytics))
             .app_data(db_pool.clone())
     })
     .listen(listener)?

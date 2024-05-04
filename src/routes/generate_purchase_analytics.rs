@@ -12,7 +12,7 @@ pub async fn generate_purchase_analytics(path: web::Path<String>) -> Result<impl
         let activators = PyModule::from_code_bound(py, code, "", "")?;
         let categories_to_probabilities: Vec<(String, f64)> = activators
             .getattr("get_user_event_today")?
-            .call1((user_id, ))?
+            .call1((user_id,))?
             .extract()?;
 
         Ok(categories_to_probabilities)
@@ -20,7 +20,8 @@ pub async fn generate_purchase_analytics(path: web::Path<String>) -> Result<impl
         Ok(probabilities_list) => Ok(web::Json(probabilities_list)),
         Err(e) => Err(PythonError {
             cause: e.to_string(),
-        }.into()),
+        }
+        .into()),
     }
 }
 
