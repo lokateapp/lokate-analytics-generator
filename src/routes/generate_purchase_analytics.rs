@@ -7,7 +7,7 @@ pub async fn generate_purchase_analytics(path: web::Path<String>) -> Result<impl
     let customer_id: String = path.into_inner();
     let code = include_str!("../../python/generate_purchase_analytics.py");
 
-    match Python::with_gil(|py| -> Result<_, PyErr> {
+    let python_result = Python::with_gil(|py| -> Result<_, PyErr> {
         let activators = PyModule::from_code_bound(py, code, "", "")?;
         let mut categories_to_probabilities: Vec<(String, f64)> = activators
             .getattr("get_user_event_today")?
@@ -23,7 +23,9 @@ pub async fn generate_purchase_analytics(path: web::Path<String>) -> Result<impl
             .collect();
 
         Ok(top_categories)
-    }) {
+    });
+
+    match python_result {
         Ok(top_categories) => Ok(web::Json(top_categories)),
         Err(e) => Err(PythonError {
             cause: e.to_string(),

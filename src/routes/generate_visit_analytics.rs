@@ -77,7 +77,7 @@ pub async fn generate_visit_analytics(
     let current_route = get_current_route(&customer_id, &pool).await?;
     let code = include_str!("../../python/generate_visit_analytics.py");
 
-    match Python::with_gil(|py| -> Result<_, PyErr> {
+    let python_result = Python::with_gil(|py| -> Result<_, PyErr> {
         let activators = PyModule::from_code_bound(py, code, "", "")?;
         let next_route: String = activators
             .getattr("get_next_stop")?
@@ -85,7 +85,9 @@ pub async fn generate_visit_analytics(
             .extract()?;
 
         Ok(next_route)
-    }) {
+    });
+
+    match python_result {
         Ok(next_route) => Ok(web::Json(next_route)),
         Err(e) => Err(PythonError {
             cause: e.to_string(),
