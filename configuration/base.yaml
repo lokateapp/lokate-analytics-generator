@@ -1,0 +1,8 @@
+application:
+  port: 8000
+database:
+  username: "postgres"
+  password: "postgres"
+  host: "172.17.0.2" # docker postgres container ip
+  db_port: 5432
+  db_name: "lokate_dev"

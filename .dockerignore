@@ -1,0 +1,11 @@
+.gitignore
+.dockerignore
+.github/
+.venv/
+misc/
+notebooks/
+target/
+tests/
+Dockerfile
+flake*
+README.md
