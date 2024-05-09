@@ -59,7 +59,7 @@ def get_user_event_today(user_id):
     event_df = event_df[event_df['date'] == today_date]
 
     # Filter events for today's date
-    print(f"Event data: {event_df}")
+    # print(f"Event data: {event_df}")
 
     # Calculate time in seconds
     event_df['time'] = (event_df['possible_exit_timestamp'] - event_df['enter_timestamp']).dt.total_seconds().astype(int)
@@ -116,7 +116,7 @@ def get_user_event_today(user_id):
 
     probabilities_list = []
     for i, prob in enumerate(probabilities):
-        print(f"Probability for class {i}: {prob[0][1]}")
+        # print(f"Probability for class {i}: {prob[0][1]}")
         # Append the probability to the list
         probabilities_list.append((category_keys[i], prob[0][1]))   # append tuples
 

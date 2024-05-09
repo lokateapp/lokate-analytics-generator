@@ -17,7 +17,7 @@ def get_next_stop(current_route):
 
     if not current_route:
         return ""
-
+    
     with open('models/visit-analytics/encoded_names.json', 'r') as f:
         encoded_names = json.load(f)
     with open('models/visit-analytics/cluster_routes.json', 'r') as f:

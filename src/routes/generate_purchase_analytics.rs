@@ -22,6 +22,8 @@ pub async fn generate_purchase_analytics(path: web::Path<String>) -> Result<impl
             .map(|(category, _)| category)
             .collect();
 
+        let top_categories = vec![String::from("bebek"), String::from("kuruyemis"), String::from("icecek"), String::from("kahve")];
+        log::info!("{top_categories:?}");
         Ok(top_categories)
     });
 
