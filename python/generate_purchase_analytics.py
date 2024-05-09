@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import pandas as pd
 from sqlalchemy import create_engine
-from datetime import datetime
+from datetime import datetime, timedelta
 import traceback
 import pickle
 import os
@@ -43,8 +43,10 @@ def get_user_event_today(user_id):
     if not user_id:
         raise Exception({'error': 'User ID is required'})
 
-    # Get today's date
-    today_date = datetime.now().date()
+    # # Get today's date
+    # today_date = datetime.now().date()
+    # Get yesterday's date  (for demo purposes)
+    today_date = datetime.now().date() - timedelta(1)
 
     # Read and preprocess event data for the specified user
     query = f"SELECT * FROM events WHERE customer_id = '{user_id}'"
@@ -106,7 +108,7 @@ def get_user_event_today(user_id):
                 sample[f'G{category_keys.index(product_group)}'] += time
 
     # Load the model from disk
-    with open('models/purchase_analytics_model.pkl', 'rb') as file:
+    with open('models/purchase-analytics/model.pkl', 'rb') as file:
         loaded_model = pickle.load(file)
 
     # Use the loaded model to make predictions

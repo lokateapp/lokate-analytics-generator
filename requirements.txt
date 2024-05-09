@@ -6,3 +6,7 @@ toml
 openpyxl
 python-dotenv
 psycopg2-binary
+tslearn
+matplotlib
+ipython
+requests
